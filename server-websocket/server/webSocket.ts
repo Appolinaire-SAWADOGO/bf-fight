@@ -47,5 +47,5 @@ io.on("connection", (socket) => {
 });
 
 httpServer.listen(443, () => {
-  console.log("Serveur WebSocket lancé sur le port 553");
+  console.log("Serveur WebSocket lancé sur le port 443");
 });

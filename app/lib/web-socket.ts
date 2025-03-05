@@ -14,7 +14,7 @@ export const websocket = (
 
   if (!socketRef.current) {
     // nouvelle connexion
-    const newSocket = io("wss://bf-fight-production.up.railway.app:443", {
+    const newSocket = io("wss://bf-fight-production.up.railway.app", {
       transports: ["websocket"], // Force WebSocket
       upgrade: false, // (Optionnel) Désactive la mise à niveau pour éviter le polling
     });
