@@ -1,0 +1,18 @@
+{
+  "name": "express",
+  "module": "server/webSocket.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run server/webSocket.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "convex": "^1.19.2",
+    "socket.io": "^4.8.1"
+  }
+}
