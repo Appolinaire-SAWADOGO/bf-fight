@@ -14,12 +14,27 @@ const Page = () => {
   const { user } = useUser();
   const { session } = useClerk();
 
-  function checkIfMobile() {
-    return (
-      window.innerWidth < 1024 ||
-      /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-    );
-  }
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Vérifie si 'window' est défini (donc côté client)
+    if (typeof window !== "undefined") {
+      const checkIfMobile = () => {
+        setIsMobile(
+          window.innerWidth < 1024 ||
+            /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+        );
+      };
+
+      checkIfMobile(); // Initial check
+
+      window.addEventListener("resize", checkIfMobile); // Met à jour lors du redimensionnement
+
+      return () => {
+        window.removeEventListener("resize", checkIfMobile); // Nettoyage de l'écouteur
+      };
+    }
+  }, []); // La fonction ne s'exécutera qu'une seule fois lors du montage du composant
 
   useStoreUserEffect();
 
@@ -56,17 +71,17 @@ const Page = () => {
 
         <div className="flex items-center justify-center w-full h-full absolute size-0 z-20">
           {/* if steps === 4  */}
-          {steps === 4 && !checkIfMobile() && (
+          {steps === 4 && !isMobile && (
             <CanvasHome steps={steps} setSteps={setSteps} />
           )}
 
           {/* if steps !== 4  */}
-          {steps !== 4 && !checkIfMobile() && (
+          {steps !== 4 && !isMobile && (
             <HomeModal steps={steps} setSteps={setSteps} />
           )}
 
           {/* is mobile */}
-          {checkIfMobile() && (
+          {isMobile && (
             <div className="flex items-center justify-center w-[500px] max-w-full  h-auto py-10 px-5 bg-white bg-opacity-10 backdrop-blur-md mx-6 rounded-xl border-2 border-white border-opacity-10">
               <TriangleAlert className="text-neutral-200 w-8 h-8" />
               <Alert className="h-full bg-transparent border-0 text-neutral-200 tracking-wider -ml-1">
