@@ -1,5 +1,5 @@
 import { api } from "../convex/_generated/api";
-import { createServer } from "http";
+import { createServer } from "https";
 import { Server as SocketIoServer } from "socket.io";
 import { ConvexClient } from "convex/browser";
 
@@ -46,6 +46,6 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(3002, () => {
+httpServer.listen(443, () => {
   console.log("Serveur WebSocket lancé sur le port 3002");
 });

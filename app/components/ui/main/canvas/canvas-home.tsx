@@ -37,8 +37,6 @@ const CanvasHome = ({ steps, setSteps }: canvasHomeType) => {
   const matchIDAndUserMatchId = useQuery(api.queries.getMatchIDAndUserMatchId);
   const deleteMatch = useMutation(api.queries.deleteMatch);
 
-  const themeSound = new Audio();
-
   const charged = () => {
     return (
       characterNumber &&
@@ -63,6 +61,8 @@ const CanvasHome = ({ steps, setSteps }: canvasHomeType) => {
 
   // theme sound
   useEffect(() => {
+    const themeSound = new Audio();
+
     if (themeSound) {
       // demarer le son
       const playSound = async () => {
@@ -83,7 +83,7 @@ const CanvasHome = ({ steps, setSteps }: canvasHomeType) => {
         themeSound.src = "";
       };
     }
-  }, [themeSound]);
+  }, []);
 
   // main
   useEffect(() => {
