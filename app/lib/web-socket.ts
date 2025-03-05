@@ -14,7 +14,7 @@ export const websocket = (
 
   if (!socketRef.current) {
     // nouvelle connexion
-    const newSocket = io("http://localhost:3002", {
+    const newSocket = io("https://bf-fight-production.up.railway.app:3002", {
       transports: ["websocket"], // Force WebSocket
       upgrade: false, // (Optionnel) Désactive la mise à niveau pour éviter le polling
     });
