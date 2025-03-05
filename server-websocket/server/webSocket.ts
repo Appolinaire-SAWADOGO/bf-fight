@@ -15,12 +15,8 @@ const io = new SocketIoServer(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  console.log("Un joueur s'est connecté :", socket.id);
-
   // Écouter si un joueur est pret pour un match
   socket.on("joinMatch", async ({ matchId, userId }) => {
-    console.log(`match join reçu de ${socket.id} :`);
-
     // Appel à la mutation Convex côté serveur
     await convex.mutation(api.queries.postUserSocketId, {
       matchId,
@@ -37,8 +33,6 @@ io.on("connection", (socket) => {
 
   // Écouter si un joueur veux envoyer des datas
   socket.on("sendData", async ({ data, userId }) => {
-    console.log("send data ---- ", data);
-
     // Récupère le socketId de l'adversaire
     const opponentSocketId = await convex.query(
       api.queries.getOpponentSocketID,
@@ -49,7 +43,6 @@ io.on("connection", (socket) => {
 
     // Envoyer les données au joueur adverse si son socketId est trouvé
     if (opponentSocketId) io.to(opponentSocketId).emit("opponentData", data);
-    else console.log("nonn");
   });
 });
 
