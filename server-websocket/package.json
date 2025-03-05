@@ -3,7 +3,7 @@
   "module": "server/webSocket.ts",
   "type": "module",
   "scripts": {
-    "dev": "bun run server/webSocket.ts"
+    "prod": "bun run server/webSocket.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
