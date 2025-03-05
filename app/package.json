@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "prod": "next build && next start",
+    "prod": "bun run build && bun run start",
     "lint": "next lint"
   },
   "dependencies": {
